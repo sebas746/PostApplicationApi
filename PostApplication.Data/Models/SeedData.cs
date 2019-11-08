@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace PostApplication.Data.Models
@@ -63,13 +65,6 @@ namespace PostApplication.Data.Models
                     UserPassword = "12345"
                 };
 
-                context.AddRange(u1, u2, u3, u4);
-                context.SaveChanges();
-            }
-            if (context.Database.GetMigrations().Count() > 0
-                     && context.Database.GetPendingMigrations().Count() == 0
-                     && context.PostStates.Count() == 0)
-            {
                 var ps1 = new PostState
                 {
                     PostStateName = "New",
@@ -78,12 +73,51 @@ namespace PostApplication.Data.Models
                 var ps2 = new PostState
                 {
                     PostStateName = "Pending for Approval",
-                    PostStateDescription = "Post pending for approval"
+                    PostStateDescription = "Pending publish approval"
                 };
 
-                context.AddRange(ps1, ps2);
+                var ps3 = new PostState
+                {
+                    PostStateName = "Approved",
+                    PostStateDescription = "Post approved"
+                };
+
+                var ps4 = new PostState
+                {
+                    PostStateName = "Refused",
+                    PostStateDescription = "Post refused"
+                };
+
+                var p1 = new Post
+                {
+                    PostPublicationDate = DateTime.Now,
+                    PostState = ps2,
+                    PostText = "New post created",
+                    PostUser = u1
+                };
+
+                var p2 = new Post
+                {
+                    PostPublicationDate = DateTime.Now,
+                    PostState = ps3,
+                    PostText = "Second post created",
+                    PostUser = u1
+                };
+
+                var b1 = new Blog
+                {
+                    BlogCreationDate = DateTime.Now,
+                    BlogDescription = "Blog for testing",
+                    BlogTitle = "General Blog",
+                    Posts = new List<Post>() { p1, p2 }
+                };
+
+                context.AddRange(ps1, ps4);
+                context.AddRange(p1, p2);
+                context.AddRange(b1);
+                context.AddRange(u1, u2, u3, u4);
                 context.SaveChanges();
-            }
+            }          
         }
     }
 }
