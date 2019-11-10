@@ -1,27 +1,43 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using PostApplication.DataContext.PostApplication;
 using PostApplication.Interfaces.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PostApplication.Data.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public DbContext Context { get; }
+        private readonly PostApplicationContext dbContext;
 
-        public UnitOfWork(DbContext context)
+        public UnitOfWork(PostApplicationContext dbContext)
         {
-            Context = context;
-        }
-        public void Commit()
-        {
-            Context.SaveChanges();
+            this.dbContext = dbContext;
         }
 
-        public void Dispose()
+        private IPostRepository _Post;
+
+        public IPostRepository Post
         {
-            Context.Dispose();
+            get
+            {
+                if (this._Post == null)
+                {
+                    this._Post = new PostRepository(dbContext);
+                }
+                return this._Post;
+            }
         }
+
+        public async Task<int> CompleteAsync()
+        {
+            return await dbContext.SaveChangesAsync();
+        }
+        public int Complete()
+        {
+            return dbContext.SaveChanges();
+        }
+        public void Dispose() => dbContext.Dispose();
     }
 }

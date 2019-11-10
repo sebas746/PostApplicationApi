@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace PostApplication.Data.Models
+namespace PostApplication.DataContext.PostApplication
 {
-    public class DataContext : DbContext    
+    public class PostApplicationContext : DbContext
     {
-        public DataContext(DbContextOptions<DataContext> opts) : base(opts) { }
+        public PostApplicationContext(DbContextOptions<PostApplicationContext> opts) : base(opts) { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -15,7 +15,7 @@ namespace PostApplication.Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Blog>().HasMany<Post>(m => m.Posts);
         }
     }
 }

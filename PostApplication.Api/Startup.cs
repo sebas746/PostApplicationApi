@@ -11,7 +11,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using PostApplication.Data.Models;
+using PostApplication.Business.Services;
+using PostApplication.Data.Repository;
+using PostApplication.DataContext.PostApplication;
+using PostApplication.Interfaces.Data;
+using PostApplication.Interfaces.Services;
 
 namespace PostApplication.Api
 {
@@ -28,13 +32,18 @@ namespace PostApplication.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<DataContext>(options =>
+            services.AddDbContext<PostApplicationContext>(options =>
                 options.UseSqlServer(Configuration["Data:Posts:ConnectionString"])
             );
+
+            //Dependency Injection
+            services.AddScoped<IPostService, PostService>();
+            services.AddScoped<IPostRepository, PostRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PostApplicationContext context)
         {
             if (env.IsDevelopment())
             {

@@ -20,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PostApplication.Business\PostApplication.Business.csproj" />
+    <ProjectReference Include="..\PostApplication.DataContext\PostApplication.DataContext.csproj" />
     <ProjectReference Include="..\PostApplication.Data\PostApplication.Data.csproj" />
   </ItemGroup>
 

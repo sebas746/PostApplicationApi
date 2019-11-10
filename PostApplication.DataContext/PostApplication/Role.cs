@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PostApplication.Data.Models
+namespace PostApplication.DataContext.PostApplication
 {
     public class Role
     {

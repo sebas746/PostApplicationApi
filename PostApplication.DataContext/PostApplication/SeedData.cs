@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using System.Text;
 
-namespace PostApplication.Data.Models
+namespace PostApplication.DataContext.PostApplication
 {
     public class SeedData
     {
-        public static void SeedDatabase(DataContext context)
+        public static void SeedDatabase(PostApplicationContext context)
         {
             if (context.Database.GetMigrations().Count() > 0
                       && context.Database.GetPendingMigrations().Count() == 0
@@ -117,7 +118,7 @@ namespace PostApplication.Data.Models
                 context.AddRange(b1);
                 context.AddRange(u1, u2, u3, u4);
                 context.SaveChanges();
-            }          
+            }
         }
     }
 }
