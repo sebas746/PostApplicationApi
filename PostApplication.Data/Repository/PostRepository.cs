@@ -8,10 +8,10 @@ using System.Text;
 
 namespace PostApplication.Data.Repository
 {
-    public class PostRepository :IPostRepository
+    public class PostRepository : GenericRepository<Post>, IPostRepository
     {
         private readonly PostApplicationContext context;
-        public PostRepository(PostApplicationContext context)
+        public PostRepository(PostApplicationContext context) : base(context)
         {
             this.context = context;
         }
@@ -41,9 +41,9 @@ namespace PostApplication.Data.Repository
         }
 
         public Post UpdatePost(Post Post)
-        {   
-            var result = context.Posts.Update(Post).Entity;            
-            return result;
+        {
+            base.Update(Post);            
+            return Post;
         }
 
         public PostState GetPostState(string PostStateName)
