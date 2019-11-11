@@ -85,7 +85,7 @@ namespace PostApplication.DataContext.PostApplication
 
                 var ps4 = new PostState
                 {
-                    PostStateName = "Refused",
+                    PostStateName = "Rejected",
                     PostStateDescription = "Post refused"
                 };
 

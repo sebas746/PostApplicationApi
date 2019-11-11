@@ -22,18 +22,42 @@ namespace PostApplication.Api.Controllers
 
         //// GET api/<controller>
         [HttpGet]
-        public IEnumerable<Blog> GetPost()
+        public ActionResult<IEnumerable<Blog>> GetPost()
+        
         {
             var response = postService.GetBlogPosts(1);
-            return response;
+            return Ok(response);
         }
 
         //// GET api/<controller>
         [HttpGet("{id}")]
-        public IEnumerable<Blog> GetPost(int id)
+        public ActionResult<IEnumerable<Blog>> GetPost(int id)
         {
             var response = postService.GetBlogPosts(id);
-            return response;
+            return Ok(response);
+        }
+
+        // GET api/<controller>
+        [Route("GetPendingForApprovalPosts/")]
+        [HttpGet]
+        public ActionResult<IEnumerable<Post>> GetPendingForApprovalPosts()
+        {
+            var response = postService.GetPendingForApprovalPosts(1);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Approve or reject a post
+        /// </summary>
+        /// <param name="PostId"></param>
+        /// <param name="IsApproved"></param>
+        /// <returns></returns>
+        [Route("ApproveOrRejectPost/")]
+        [HttpGet]
+        public ActionResult<Post> ApproveOrRejectPost(int PostId, bool IsApproved)
+        {
+            var response = postService.ApproveOrRejectPost(PostId, IsApproved);
+            return Ok(response);
         }
     }
 }

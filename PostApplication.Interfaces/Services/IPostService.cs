@@ -8,5 +8,8 @@ namespace PostApplication.Interfaces.Services
     public interface IPostService
     {
         IEnumerable<Blog> GetBlogPosts(int BlogId);
+        IEnumerable<Post> GetPendingForApprovalPosts(int BlogId);
+        IEnumerable<Blog> GetBlogPosts();
+        Post ApproveOrRejectPost(int PostId, bool IsApproved);
     }
 }

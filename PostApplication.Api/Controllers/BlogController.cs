@@ -23,7 +23,7 @@ namespace PostApplication.Api.Controllers
         [HttpGet]
         public IEnumerable<Blog> Get()
         {
-            var response = postService.GetBlogPosts(1);
+            var response = postService.GetBlogPosts();
             return response;
         }
 

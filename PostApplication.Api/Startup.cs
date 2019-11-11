@@ -36,6 +36,8 @@ namespace PostApplication.Api
                 options.UseSqlServer(Configuration["Data:Posts:ConnectionString"])
             );
 
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
             //Dependency Injection
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPostRepository, PostRepository>();

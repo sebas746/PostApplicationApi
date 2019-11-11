@@ -11,5 +11,6 @@ namespace PostApplication.DataContext.PostApplication
         public DateTime PostPublicationDate { get; set; }
         public PostState PostState { get; set; }
         public User PostUser { get; set; }
+        public Blog Blog { get; set; }
     }
 }
