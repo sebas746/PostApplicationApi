@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PostApplication.Core\PostApplication.Core.csproj" />
     <ProjectReference Include="..\PostApplication.DataContext\PostApplication.DataContext.csproj" />
   </ItemGroup>
 

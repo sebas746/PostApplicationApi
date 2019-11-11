@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PostApplication.Core\PostApplication.Core.csproj" />
     <ProjectReference Include="..\PostApplication.Interfaces\PostApplication.Interfaces.csproj" />
   </ItemGroup>
 

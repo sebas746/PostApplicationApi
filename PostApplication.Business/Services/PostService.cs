@@ -1,4 +1,5 @@
-﻿using PostApplication.DataContext.PostApplication;
+﻿using PostApplication.Core.DTO;
+using PostApplication.DataContext.PostApplication;
 using PostApplication.Interfaces.Data;
 using PostApplication.Interfaces.Services;
 using System;
@@ -11,10 +12,12 @@ namespace PostApplication.Business.Services
     public class PostService : IPostService
     {
         private readonly IUnitOfWork uow;
+        private readonly IPostRepository postRepository;
 
-        public PostService(IUnitOfWork uow)
+        public PostService(IUnitOfWork uow, IPostRepository postRepository)
         {
             this.uow = uow;
+            this.postRepository = postRepository;
         }
 
         public IEnumerable<Blog> GetBlogPosts(int BlogId)
@@ -50,10 +53,26 @@ namespace PostApplication.Business.Services
 
             Post.PostState = PostState;
 
-            var response = uow.Post.UpdatePost(Post);
-            uow.Complete();
-            
-            return response;
+            postRepository.Update(Post);
+            postRepository.Save();
+
+            return Post;
+        }
+
+        public Post CreatePost(PostDTO PostDTO)
+        {
+            var post = PostDTO.Post;
+            var postState = postRepository.GetPostState("Pending publish approval");
+            post.PostState = postState;
+            postRepository.Insert(post);
+            postRepository.Save();
+            //return Post;
+            return null;
+        }
+
+        public void DeletePost(int PostId)
+        {
+            postRepository.Delete(PostId);
         }
     }
 }

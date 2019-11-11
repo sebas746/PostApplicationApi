@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PostApplication.Interfaces.Data
 {
-    public interface IPostRepository
+    public interface IPostRepository : IGenericRepository<Post>
     {
         IEnumerable<Blog> GetBlogPosts(int BlogId);
         IEnumerable<Post> GetPendingForApprovalPosts(int BlogId);
@@ -13,5 +13,7 @@ namespace PostApplication.Interfaces.Data
         Post UpdatePost(Post Post);
         Post GetPost(int PostId);
         PostState GetPostState(string PostStateName);
+        //Post CreatePost(Post Post);
+        //bool DeletePost(int PostId);
     }
 }

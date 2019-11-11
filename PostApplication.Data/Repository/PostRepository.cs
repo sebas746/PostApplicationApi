@@ -51,5 +51,17 @@ namespace PostApplication.Data.Repository
             var result = context.PostStates.Where(ps => ps.PostStateName == PostStateName).FirstOrDefault();
             return result;
         }
+
+        //public Post CreatePost(Post Post)
+        //{
+        //    base.Insert(Post);
+        //    return Post;
+        //}
+
+        //public bool DeletePost(int PostId)
+        //{
+        //    base.Delete(PostId);
+        //    return true;
+        //}
     }
 }

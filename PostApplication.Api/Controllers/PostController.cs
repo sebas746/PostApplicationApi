@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PostApplication.Core.DTO;
 using PostApplication.DataContext.PostApplication;
 using PostApplication.Interfaces.Services;
 
@@ -57,6 +58,23 @@ namespace PostApplication.Api.Controllers
         public ActionResult<Post> ApproveOrRejectPost(int PostId, bool IsApproved)
         {
             var response = postService.ApproveOrRejectPost(PostId, IsApproved);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Delete a Post from database.
+        /// </summary>
+        /// <param name="PostId">Post Id to delete</param>
+        [HttpDelete("{id}")]
+        public void Delete(int PostId)
+        {
+            postService.DeletePost(PostId);
+        }
+
+        [HttpPost]
+        public ActionResult<Post> Create(PostDTO PostDTO)
+        {
+            var response = postService.CreatePost(PostDTO);
             return Ok(response);
         }
     }
