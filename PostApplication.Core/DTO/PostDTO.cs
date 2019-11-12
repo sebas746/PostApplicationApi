@@ -5,9 +5,10 @@ using System.Text;
 
 namespace PostApplication.Core.DTO
 {
-    public class post
+    public class PostDTO
     {
-        public Post Post { get; set; }
-        public Role CreaterRole { get; set; }
+        public string PostTitle { get; set; }
+        public string PostContent { get; set; }
+        public string PostPublisherUsername { get; set; }        
     }
 }

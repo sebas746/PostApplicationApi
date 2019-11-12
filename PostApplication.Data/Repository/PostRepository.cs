@@ -24,7 +24,7 @@ namespace PostApplication.Data.Repository
 
         public Post GetPost(int PostId)
         {
-            var result = context.Posts.Include(p => p.PostState).Where(p => p.PostId == PostId).FirstOrDefault();
+            var result = context.Posts.Include(p => p.Blog).Include(p => p.PostState).Where(p => p.PostId == PostId).FirstOrDefault();
             return result;
         }
 
@@ -55,6 +55,18 @@ namespace PostApplication.Data.Repository
         public PostState GetPostState(string PostStateName)
         {
             var result = context.PostStates.Where(ps => ps.PostStateName == PostStateName).FirstOrDefault();
+            return result;
+        }
+
+        public PostState GetPostStateById(int PostStateId)
+        {
+            var result = context.PostStates.Where(ps => ps.PostStateId == PostStateId).FirstOrDefault();
+            return result;
+        }
+
+        public Blog GetBlog()
+        {
+            var result = context.Blogs.FirstOrDefault();
             return result;
         }
 

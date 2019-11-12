@@ -12,8 +12,9 @@ namespace PostApplication.Interfaces.Services
         IEnumerable<Post> GetPendingForApprovalPosts(int BlogId);
         IEnumerable<Blog> GetBlogPosts();
         Post ApproveOrRejectPost(int PostId, bool IsApproved);
-        void DeletePost(int PostId);
-        Post CreatePost(Post post);
+        Post DeletePost(int PostId);
+        Post CreatePost(PostDTO postDTO);
         IEnumerable<Post> GetPosts();
+        Post UpdatePost(Post post);
     }
 }

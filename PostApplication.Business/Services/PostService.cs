@@ -1,4 +1,5 @@
 ﻿using PostApplication.Core.DTO;
+using PostApplication.Core.Enums;
 using PostApplication.DataContext.PostApplication;
 using PostApplication.Interfaces.Data;
 using PostApplication.Interfaces.Services;
@@ -13,11 +14,13 @@ namespace PostApplication.Business.Services
     {
         private readonly IUnitOfWork uow;
         private readonly IPostRepository postRepository;
+        private readonly IUserRepository userRepository;
 
-        public PostService(IUnitOfWork uow, IPostRepository postRepository)
+        public PostService(IUnitOfWork uow, IPostRepository postRepository, IUserRepository userRepository)
         {
             this.uow = uow;
             this.postRepository = postRepository;
+            this.userRepository = userRepository;
         }
 
         public IEnumerable<Blog> GetBlogPosts(int BlogId)
@@ -65,19 +68,44 @@ namespace PostApplication.Business.Services
             return Post;
         }
 
-        public Post CreatePost(Post post)
-        {            
-            var postState = postRepository.GetPostState("Pending publish approval");
-            post.PostState = postState;
+        public Post CreatePost(PostDTO postDTO)
+        {
+            var postState = postRepository.GetPostStateById((int)Enums.PostStates.PendingForApproval);
+            var blog = postRepository.GetBlog();
+            var user = userRepository.GetUSerByUsername(postDTO.PostPublisherUsername);           
+
+            var post = new Post()
+            {
+                Blog = blog,
+                PostState = postState,
+                PostId = 0,
+                PostPublicationDate = DateTime.Now,
+                PostText = postDTO.PostContent,
+                PostTitle = postDTO.PostTitle,
+                PostUser = user
+            };
 
             postRepository.Insert(post);
             postRepository.Save();
             return post;
         }
 
-        public void DeletePost(int PostId)
+        public Post DeletePost(int PostId)
         {
+            var post = postRepository.GetByID(PostId);
             postRepository.Delete(PostId);
+            postRepository.Save();
+            return post;
+        }
+
+        public Post UpdatePost(Post post)
+        {
+            var postComplete = postRepository.GetPost(post.PostId);
+            postComplete.PostText = post.PostText;
+            postComplete.PostTitle = post.PostTitle;
+            postRepository.Update(postComplete);
+            postRepository.Save();
+            return postComplete;
         }
     }
 }

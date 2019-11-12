@@ -14,6 +14,8 @@ namespace PostApplication.Interfaces.Data
         Post GetPost(int PostId);
         PostState GetPostState(string PostStateName);
         IEnumerable<Post> GetPost();
+        Blog GetBlog();
+        PostState GetPostStateById(int PostStateId);
         //Post CreatePost(Post Post);
         //bool DeletePost(int PostId);
     }

@@ -10,8 +10,8 @@ using PostApplication.DataContext.PostApplication;
 namespace PostApplication.DataContext.Migrations
 {
     [DbContext(typeof(PostApplicationContext))]
-    [Migration("20191111142856_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20191112125157_MyFirstMigration")]
+    partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

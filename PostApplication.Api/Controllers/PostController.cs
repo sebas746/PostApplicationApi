@@ -21,11 +21,11 @@ namespace PostApplication.Api.Controllers
             this.postService = postService;
         }
 
-        [Route("CreatePost")]
+        [Route("CreateNewPost")]
         [HttpPost]
-        public ActionResult<Post> CreatePost(Post post)
+        public ActionResult<Post> CreatePost(PostDTO postDTO)
         {
-            var response = postService.CreatePost(post);
+            var response = postService.CreatePost(postDTO);
             return Ok(response);
         }
 
@@ -74,9 +74,22 @@ namespace PostApplication.Api.Controllers
         /// </summary>
         /// <param name="PostId">Post Id to delete</param>
         [HttpDelete("{id}")]
-        public void Delete(int PostId)
+        public ActionResult<Post> Delete(int id)
         {
-            postService.DeletePost(PostId);
+            var response = postService.DeletePost(id);
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Update an existent post
+        /// </summary>
+        /// <param name="post"></param>
+        /// <returns>Post modified</returns>
+        [HttpPut]
+        public ActionResult<Post> Update(Post post)
+        {
+            var response = postService.UpdatePost(post);
+            return Ok(response);
         }
     }
 }

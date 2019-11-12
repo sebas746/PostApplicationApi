@@ -9,5 +9,6 @@ namespace PostApplication.Interfaces.Data
     public interface IUserRepository : IGenericRepository<User>
     {
         User CheckUser(UserDTO UserData);
+        User GetUSerByUsername(string Username);
     }
 }
