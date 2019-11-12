@@ -92,6 +92,7 @@ namespace PostApplication.DataContext.PostApplication
                 var p1 = new Post
                 {
                     PostPublicationDate = DateTime.Now,
+                    PostTitle = "Title Post 1",
                     PostState = ps2,
                     PostText = "New post created",
                     PostUser = u1
@@ -100,6 +101,7 @@ namespace PostApplication.DataContext.PostApplication
                 var p2 = new Post
                 {
                     PostPublicationDate = DateTime.Now,
+                    PostTitle = "Title Post 2",
                     PostState = ps3,
                     PostText = "Second post created",
                     PostUser = u1

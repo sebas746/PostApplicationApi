@@ -13,6 +13,7 @@ namespace PostApplication.Interfaces.Services
         IEnumerable<Blog> GetBlogPosts();
         Post ApproveOrRejectPost(int PostId, bool IsApproved);
         void DeletePost(int PostId);
-        Post CreatePost(PostDTO PostDTO);
+        Post CreatePost(Post post);
+        IEnumerable<Post> GetPosts();
     }
 }

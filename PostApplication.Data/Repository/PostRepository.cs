@@ -28,6 +28,12 @@ namespace PostApplication.Data.Repository
             return result;
         }
 
+        public IEnumerable<Post> GetPost()
+        {
+            var result = context.Posts.Include(p => p.PostState).Include(p => p.PostUser);
+            return result;
+        }
+
         public IEnumerable<Blog> GetBlogPosts()
         {
             var result = context.Blogs.Include(p => p.Posts).Take(10);

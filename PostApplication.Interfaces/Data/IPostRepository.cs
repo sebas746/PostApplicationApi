@@ -13,6 +13,7 @@ namespace PostApplication.Interfaces.Data
         Post UpdatePost(Post Post);
         Post GetPost(int PostId);
         PostState GetPostState(string PostStateName);
+        IEnumerable<Post> GetPost();
         //Post CreatePost(Post Post);
         //bool DeletePost(int PostId);
     }

@@ -9,7 +9,7 @@ using PostApplication.Interfaces.Services;
 namespace PostApplication.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BlogController : ControllerBase
     {
         private readonly IPostService postService;

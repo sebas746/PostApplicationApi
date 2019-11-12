@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PostApplication.Core.DTO
 {
-    public class PostDTO
+    public class post
     {
         public Post Post { get; set; }
         public Role CreaterRole { get; set; }

@@ -31,6 +31,14 @@ namespace PostApplication.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
+
             services.AddControllers();
             services.AddDbContext<PostApplicationContext>(options =>
                 options.UseSqlServer(Configuration["Data:Posts:ConnectionString"])
@@ -41,12 +49,16 @@ namespace PostApplication.Api
             //Dependency Injection
             services.AddScoped<IPostService, PostService>();
             services.AddScoped<IPostRepository, PostRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, PostApplicationContext context)
         {
+            app.UseCors("CorsPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -11,7 +11,7 @@ using PostApplication.Interfaces.Services;
 namespace PostApplication.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PostController : ControllerBase
     {
         private readonly IPostService postService;
@@ -21,12 +21,20 @@ namespace PostApplication.Api.Controllers
             this.postService = postService;
         }
 
+        [Route("CreatePost")]
+        [HttpPost]
+        public ActionResult<Post> CreatePost(Post post)
+        {
+            var response = postService.CreatePost(post);
+            return Ok(response);
+        }
+
         //// GET api/<controller>
         [HttpGet]
-        public ActionResult<IEnumerable<Blog>> GetPost()
+        public ActionResult<IEnumerable<Post>> GetPost()
         
         {
-            var response = postService.GetBlogPosts(1);
+            var response = postService.GetPosts();
             return Ok(response);
         }
 
@@ -69,13 +77,6 @@ namespace PostApplication.Api.Controllers
         public void Delete(int PostId)
         {
             postService.DeletePost(PostId);
-        }
-
-        [HttpPost]
-        public ActionResult<Post> Create(PostDTO PostDTO)
-        {
-            var response = postService.CreatePost(PostDTO);
-            return Ok(response);
         }
     }
 }

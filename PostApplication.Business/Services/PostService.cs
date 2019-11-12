@@ -26,6 +26,12 @@ namespace PostApplication.Business.Services
             return response;
         }
 
+        public IEnumerable<Post> GetPosts()
+        {
+            var response = postRepository.GetPost();
+            return response;
+        }
+
         public IEnumerable<Blog> GetBlogPosts()
         {
             var response = uow.Post.GetBlogPosts();
@@ -59,15 +65,14 @@ namespace PostApplication.Business.Services
             return Post;
         }
 
-        public Post CreatePost(PostDTO PostDTO)
-        {
-            var post = PostDTO.Post;
+        public Post CreatePost(Post post)
+        {            
             var postState = postRepository.GetPostState("Pending publish approval");
             post.PostState = postState;
+
             postRepository.Insert(post);
             postRepository.Save();
-            //return Post;
-            return null;
+            return post;
         }
 
         public void DeletePost(int PostId)

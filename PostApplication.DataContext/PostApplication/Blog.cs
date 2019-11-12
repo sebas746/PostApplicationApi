@@ -10,6 +10,7 @@ namespace PostApplication.DataContext.PostApplication
         public string BlogTitle { get; set; }
         public string BlogDescription { get; set; }
         public DateTime BlogCreationDate { get; set; }
+        public User BlogCreatedBy { get; set; }
         public List<Post> Posts { get; set; }
     }
 }
