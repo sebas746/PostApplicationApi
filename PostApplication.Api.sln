@@ -17,7 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{72E6CDCC-1
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostApplication.Business.Test", "PostApplication.Business.Test\PostApplication.Business.Test.csproj", "{0747E402-836B-47B9-AC92-697A71102F87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostApplication.DataContext", "PostApplication.DataContext\PostApplication.DataContext.csproj", "{6C8A9F24-6677-4C0C-A243-192AEAA889B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostApplication.DataContext", "PostApplication.DataContext\PostApplication.DataContext.csproj", "{6C8A9F24-6677-4C0C-A243-192AEAA889B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostApplication.Repository.Test", "PostApplication.Repository.Test\PostApplication.Repository.Test.csproj", "{74301AB3-24A1-40BC-8F3E-369543C77D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,12 +55,17 @@ Global
 		{6C8A9F24-6677-4C0C-A243-192AEAA889B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C8A9F24-6677-4C0C-A243-192AEAA889B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C8A9F24-6677-4C0C-A243-192AEAA889B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74301AB3-24A1-40BC-8F3E-369543C77D57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74301AB3-24A1-40BC-8F3E-369543C77D57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74301AB3-24A1-40BC-8F3E-369543C77D57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74301AB3-24A1-40BC-8F3E-369543C77D57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0747E402-836B-47B9-AC92-697A71102F87} = {72E6CDCC-1985-4FA2-BB3B-9C37463E8E88}
+		{74301AB3-24A1-40BC-8F3E-369543C77D57} = {72E6CDCC-1985-4FA2-BB3B-9C37463E8E88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C318B447-8CE1-4C9B-8875-628259906B25}
